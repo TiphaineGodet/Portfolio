@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie ~ Tiphaine GODET</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.classList.add('page-enter');
+        });
+    </script>
+</head>
+<body>
+    <a href="index.html">
+        <header class="banner">
+            <div class="overlay"></div>
+            <a href="#" onclick="showPDF(event, '../documents/CV - Tiphaine Godet.pdf')" class="cv-icon">
+                <i class="fas fa-file-pdf"></i>
+                <span>CV</span>
+            </a>            
+            <h1 class="banner-title">Galerie de Projets</h1>
+        </header>
+    </a>
+    <main>
+        <section class="gallery">
+            <div class="grid-container">
+                <div class="grid-item" style="background-image: url('../pictures/modelisation.png');" 
+                     onclick="toggleDetails(event, 'SAE Option IA : Modélisation stochastique', 'Contexte et objectifs du projet', 
+                            `<p>Une entreprise de transport collectif cherche à améliorer l'efficacité des opérations de maintenance réalisées sur ses véhicules. 
+                            Un axe d'amélioration porte sur l'élaboration de recommandations visant à assister les mainteneurs dans leurs opérations de maintenance.</p>
+                            <p>L'entreprise souhaite également mutualiser l'expertise des mainteneurs. En effet, les mainteneurs, qui sont situés sur différents lieux géographiques, 
+                            interviennent sur des matériels analogues sans pouvoir aisément bénéficier de l'expérience de leurs collègues travaillant sur d'autres sites.</p>
+                            <p>Ce projet vise à apporter des outils d'aide à la décision pour le pilotage de la maintenance et la réalisation des actions de réparation. 
+                            Pour ce faire, des données issues de la GMAO (Gestionnaire de Maintenance Assisté par Ordinateur) de l'entreprise sont mises à disposition.</p>
+                            <p><em>Note importante : les données mises à disposition sont anonymisées mais demeurent néanmoins confidentielles. 
+                            Il est donc interdit de diffuser et partager ces données en dehors du cadre du projet.</em></p>`, 'modelisation.html')">
+                    <div class="grid-item-text">
+                        <img src="../pictures/iut.png" alt="IUT Logo" class="grid-item-logo">
+                        SAE Option IA : Modélisation stochastique<br>(juil. 2024)
+                    </div>
+                </div>
+                <div class="grid-item" style="background-image: url('../pictures/datathon.png');" 
+                     onclick="toggleDetails(event, 'Datathon SNCF Gares et Connexions', 'Contexte et objectifs du projet', 
+                            `<p>
+                                SNCF Gares & Connexions, une société Anonyme, filiale à 100 % de SNCF Réseau, SNCF Gares & Connexions est au service des
+                                transporteurs de tous modes, des collectivités et des voyageurs.
+                            </p>
+                            <p>
+                                Accueillir chaque jour 10 millions de voyageurs, visiteurs et riverains, appelle un engagement
+                                fort pour améliorer la qualité de l’exploitation, imaginer de nouveaux services et moderniser le
+                                patrimoine.
+                            </p>
+                            <p>
+                                La SA a un seul objectif : satisfaire ses clients et leur donner envie de prendre l'un des 15 000
+                                trains au départ chaque jour.
+                            </p>
+                            <p>Cette entreprise nous à sélectionner 5 cas d'usages, auxquelles nous allons essayer d'y répondre par groupe mixte (inter
+                                parcours) dans un délai de 1 jour et demi.
+                            </p>`, 'datathon.html')">
+                    <div class="grid-item-text">
+                        <img src="../pictures/iut.png" alt="IUT Logo" class="grid-item-logo">
+                        Datathon SNCF Gares et Connexions<br>(janv. 2024)
+                    </div>
+                </div>
+                <div class="grid-item" style="background-image: url('../pictures/reecriture.png');" 
+                     onclick="toggleDetails(event, 'Réécriture de programme SAS et automatisation en R', 'Contexte et objectifs du projet',
+                            `<p>
+                                J'ai entrepris mon alternance pour une durée de 1 an et demi en tant que data analyst dans la SOciété Des Établissements BOugro (Sodebo), 
+                                une entreprise emblématique du secteur alimentaire.
+                            </p>
+                            <p>
+                                Fondée il y a plusieurs décennies, Sodebo est une entreprise renommée dans le domaine de la fabrication de produits alimentaires de qualité. 
+                                Elle s'est forgé une réputation solide grâce à sa passion pour l'innovation, sa recherche constante de nouvelles saveurs et son engagement envers 
+                                la satisfaction des clients. Sodebo est aujourd'hui un leader sur le marché du traiteur, offrant une large gamme de produits appréciés par 
+                                les consommateurs.
+                            </p>
+                            <p>
+                                SAS Enterprise Guide permet d’explorer, de traiter et de modéliser efficacement les données. Grâce à ses fonctionnalités avancées, cet outil 
+                                offre à l'entreprise la possibilité de manipuler et d'analyser les données avec une grande précision, améliorant ainsi la prise de décision.
+                                Suite à un choix de Sodebo, la licence SAS a été arreté en Décembre 2023 et a été petit à petit remplacer par Python et RStudio.
+                            </p>`, 'reecriture.html')">
+                    <div class="grid-item-text">
+                        <img src="../pictures/sodebo.png" alt="Sodebo" class="grid-item-logo">
+                        Réécriture de programme SAS et automatisation en R
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer footer-gallery">
+        <div class="contact" onclick="showContactInfo()">© 2024 - Contact</div>
+        <h1 class="footer-title">Galerie ~ Tiphaine GODET</h1>
+        <img src="../pictures/iut.png" alt="Logo 1" class="footer-logo">
+        <img src="../pictures/sd.png" alt="Logo 1" class="footer-logo">
+        <div class="contact-info" id="contactInfo">
+            <p><i class="fas fa-phone-alt"></i> 07 67 51 52 55</p>
+            <p><i class="fas fa-envelope"></i> tiphaine.godet.pro@gmail.com</p>
+            <p><a href="https://www.linkedin.com/in/tiphaine-godet-803a39176/" target="_blank"><i class="fab fa-linkedin"></i>Tiphaine Godet</a></p>
+            <p><a href="https://github.com/TiphaineGodet/" target="_blank"><i class="fab fa-github"></i>TiphaineGodet</a></p>
+        </div>
+    </footer>
+    <div id="pdfViewer" class="pdf-viewer">
+        <div class="pdf-overlay" onclick="hidePDF()"></div>
+        <div class="pdf-content">
+            <iframe id="pdfFrame" src="" width="100%" height="100%"></iframe>
+            <button onclick="hidePDF()">Close</button>
+        </div>
+    </div>
+    <div id="projectDetails" class="project-details">
+        <div class="details-content">
+            <button class="close-button" onclick="toggleDetails(event)"><i class="fas fa-times"></i></button>
+            <p id="projectName" class="project-name"></p>
+            <h2 id="detailsTitle"></h2>
+            <div id="detailsDescription"></div>
+            <a id="detailsLink" href="#" class="details-link">En savoir plus</a>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

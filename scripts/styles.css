@@ -1,0 +1,601 @@
+/* Import des polices */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Playfair+Display:ital,wght@1,400&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    height: 100%;
+    background-color: #333;
+    box-sizing: border-box;
+}
+
+/* Styles pour le header */
+header {
+    position: relative;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Styles pour la navigation */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+/* Styles pour la section hero */
+.hero {
+    position: relative;
+    height: 100vh;
+    background: url('../pictures/fond.png') no-repeat center center/cover;
+}
+
+/* Overlay pour l'image de fond */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Contenu centré */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* Styles pour le titre */
+.title {
+    font-size: 5em;
+    margin-bottom: 0.5em;
+    color: #ffffff;
+    font-family: 'Great Vibes', cursive;
+}
+
+/* Styles pour le bouton */
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #6bacd8;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+/* Styles pour le texte de pied de page */
+.footer-text {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 1em;
+    color: #ffffff;
+}
+
+/* Styles pour la section de bandeau */
+.banner {
+    position: relative;
+    height: 15vh; 
+    background: url('../pictures/bandeau.png') no-repeat center center/cover;
+}
+
+.banner .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.banner-title {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2em;
+}
+
+/* Styles pour le lien de la bannière */
+.banner a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Styles pour la galerie */
+.gallery {
+    padding: 50px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.gallery-title {
+    font-size: 3em;
+    margin-bottom: 20px;
+    font-family: 'Great Vibes', cursive;
+    color: #ffffff;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.grid-item {
+    background-color: #ffffff;
+    font-size: 1.5em;
+    border-radius: 10px;
+    transition: transform 0.3s, background-image 0.3s;
+    cursor: pointer;
+    border: 2px solid #000000;
+    color: #000000;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 200px; /* Fixe une hauteur pour les éléments de la grille */
+}
+
+.grid-item:hover {
+    transform: scale(1.05);
+}
+
+.grid-item .grid-item-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Pour empiler le texte et le logo */
+    text-align: center; /* Centre le texte */
+}
+
+.grid-item:hover .grid-item-text {
+    opacity: 1;
+}
+
+.grid-item-logo {
+    width: auto;
+    height: 30px; /* Taille fixe en hauteur pour maintenir les proportions */
+    margin-bottom: 5px; /* Espacement entre le logo et le texte */
+}
+
+/* Styles pour l'icône CV dans le bandeau */
+.cv-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    font-size: 2em;
+    text-decoration: none;
+    text-align: center; /* Centre le texte sous l'icône */
+}
+
+.cv-icon i {
+    display: block; /* S'assure que l'icône est sur une ligne séparée du texte */
+    margin-bottom: 10px; /* Ajoute un espace entre l'icône et le texte */
+}
+
+.cv-icon span {
+    font-size: 0.5em; /* Taille du texte sous l'icône */
+    display: block;
+}
+
+.cv-icon:hover {
+    color: #ddd;
+}
+
+/* Styles pour l'aperçu PDF */
+.pdf-viewer {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.pdf-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.pdf-content {
+    position: relative;
+    background: #fff;
+    width: 90%;
+    height: 90%;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 1001;
+}
+
+.pdf-content iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.pdf-content button {
+    position: absolute;
+    top: 1; /* Positionné en haut */
+    right: 1; /* Positionné à droite */
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 10px; /* Espace entre le bord de la fenêtre et le bouton */
+}
+
+.pdf-content button:hover {
+    background: #555;
+}
+
+/* Styles pour le pied de page */
+.footer {
+    position: relative;
+    height: 6vh;
+    background-color: #000000; /* Définit le fond noir */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.footer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1em;
+    color: #ffffff; /* Assurez-vous que la couleur du texte est visible sur fond noir */
+    font-weight: normal;
+    margin: 0;
+    flex: 1;
+    text-align: center; /* Centre le texte */
+}
+
+.footer-logo {
+    width: 30px;
+    margin: 0 10px;
+}
+
+.contact {
+    font-family: 'Playfair Display', serif;
+    font-size: 1em;
+    color: #ffffff; /* Assurez-vous que la couleur du texte est visible sur fond noir */
+    font-weight: normal;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* Styles pour l'info-bulle de contact */
+.contact-info {
+    display: none; /* Caché par défaut */
+    position: absolute;
+    bottom: 50px;
+    left: 20px; /* Aligner à gauche */
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.contact-info p {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info i {
+    margin-right: 8px; /* Espace entre l'icône et le texte */
+}
+
+/* Supprimer ou corriger l'élément overlay si nécessaire */
+.footer .overlay {
+    display: none; /* Masque l'overlay s'il n'est pas nécessaire */
+}
+
+/* Styles pour la fenêtre de détails du projet */
+.project-details {
+    display: none;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1002;
+    max-width: 500px; /* Ajustez la largeur maximale selon vos besoins */
+    width: auto;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+}
+
+.details-content {
+    position: relative;
+    color: #000; /* Texte noir */
+}
+
+.details-content .project-name {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.details-content h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.details-content #detailsDescription {
+    text-align: justify; /* Texte justifié */
+}
+
+.details-content .details-link {
+    display: block;
+    margin: 20px auto 0;
+    color: #fff;
+    background-color: #007BFF;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    width: fit-content;
+}
+
+.details-content .details-link:hover {
+    background-color: #0056b3;
+}
+
+.details-content .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #333;
+}
+
+.details-content .close-button:hover {
+    color: #555;
+}
+
+/* Animation de balayage vers le haut */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.page-enter {
+    animation: slideUp 0.5s forwards;
+}
+
+/* Media Queries pour adaptabilité */
+@media (max-width: 1200px) {
+    .title {
+        font-size: 4em;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-item {
+        padding: 60px;
+        font-size: 1.2em;
+        height: 150px; /* Ajuster la hauteur pour les écrans moyens */
+    }
+
+    .banner-title {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 3em;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-item {
+        padding: 40px;
+        font-size: 1em;
+        height: auto; /* Ajuste la hauteur pour les petits écrans */
+    }
+
+    .banner-title {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2em;
+    }
+
+    button {
+        font-size: 0.8em;
+        padding: 8px 16px;
+    }
+
+    .grid-item {
+        padding: 20px;
+        font-size: 0.8em;
+        height: auto; /* Ajuste la hauteur pour les petits écrans */
+    }
+
+    .banner-title {
+        font-size: 1em;
+    }
+}
+
+/* Styles pour la section context */
+.project-context {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin: 20px;
+    color: #000; /* Texte en noir */
+}
+
+.project-context h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.project-context p {
+    font-size: 1em;
+    line-height: 1.5;
+    text-align: justify; /* Texte justifié */
+}
+
+/* Styles pour l'icône de retour */
+.back-icon {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    color: #ffffff;
+    font-size: 1.2em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.back-icon i {
+    margin-right: 5px;
+}
+
+
+/* Media Queries pour adaptabilité */
+@media (max-width: 1200px) {
+    .project-context h2 {
+        font-size: 1.5em;
+    }
+
+    .collapsible-button {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-context h2 {
+        font-size: 1.2em;
+    }
+
+    .collapsible-button {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-context h2 {
+        font-size: 1em;
+    }
+
+    .collapsible-button {
+        font-size: 0.8em;
+    }
+}
+
+/* Styles pour le bouton dans l'onglet Modélisation */
+button.collapsible {
+    background-color: #ffffff; /* Fond blanc */
+    color: #000000; /* Texte noir */
+    cursor: pointer;
+    padding: 10px 20px;
+    width: calc(100% - 40px); /* S'étend sur toute la largeur moins les marges */
+    border: 1px solid #000000; /* Bordure noire */
+    text-align: left;
+    outline: none;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    margin: 2px 20px; /* Ajoute un espace entre les boutons */
+    box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur */
+}
+
+button.collapsible:hover {
+    background-color: #f0f0f0; /* Change légèrement la couleur au survol */
+}
+
+button.collapsible.active {
+    background-color: #cccccc; /* Change la couleur lorsqu'il est actif */
+}
+
+/* Styles pour le contenu des sections dépliables */
+.collapsible-content {
+    display: none; /* Caché par défaut */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin: 10px 20px; /* Réduit l'espace entre les sections */
+    color: #000; /* Texte en noir */
+}
+
+.collapsible-content.show {
+    display: block; /* Affiche le contenu */
+}
+
+

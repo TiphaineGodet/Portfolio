@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modélisation Stochastique ~ Tiphaine GODET</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="banner">
+        <div class="overlay"></div>
+        <a href="gallery.html" class="back-icon">
+            <i class="fas fa-arrow-left"></i>
+            <span>Retour</span>
+        </a>
+        <h1 class="banner-title">Modélisation Stochastique</h1>
+    </header>
+    <main>
+        <section class="project-context">
+            <h2>Contexte et objectifs du projet</h2>
+            <p>Une entreprise de transport collectif cherche à améliorer l'efficacité des opérations de maintenance réalisées sur ses véhicules. 
+                Un axe d'amélioration porte sur l'élaboration de recommandations visant à assister les mainteneurs dans leurs opérations de maintenance.</p>
+            <p>L'entreprise souhaite également mutualiser l'expertise des mainteneurs. En effet, les mainteneurs, qui sont situés sur différents lieux géographiques, 
+                interviennent sur des matériels analogues sans pouvoir aisément bénéficier de l'expérience de leurs collègues travaillant sur d'autres sites.</p>
+            <p>Ce projet vise à apporter des outils d'aide à la décision pour le pilotage de la maintenance et la réalisation des actions de réparation. 
+                Pour ce faire, des données issues de la GMAO (Gestionnaire de Maintenance Assisté par Ordinateur) de l'entreprise sont mises à disposition.</p>
+            <p><em>Note importante : les données mises à disposition sont anonymisées mais demeurent néanmoins confidentielles. 
+                Il est donc interdit de diffuser et partager ces données en dehors du cadre du projet.</em></p>
+        </section>
+        <button class="collapsible">PROBLÉMATIQUE</button>
+        <section class="project-context collapsible-content">
+            <h3 style="color: #4472C4;">Problématique métier</h3>
+            <p>L'entreprise de transport exploite une flotte de véhicules qui circule pendant les horaires de service. Lorsqu'un problème survient sur un véhicule, 
+                le conducteur est chargé de faire un signalement décrivant le problème perçu. Le conducteur réalise son signalement via une console électronique dans le véhicule 
+                lui permettant de saisir trois informations :</p>
+            <ul>
+                <li>l'organe siège de l'anomalie ;</li>
+                <li>le symptôme observé ;</li>
+                <li>une liste d'informations contextuelles sur le lieu ou le phénomène observé.</li>
+            </ul>
+            <p>Il est important d'avoir à l'esprit que ce signalement est une appréciation du conducteur et que ce dernier peut bien sûr se tromper sur les informations saisies.</p>
+            <p>En fin de service, le véhicule retourne au dépôt. Les signalements effectués sont transmis dans l'outil de gestion de la maintenance (GMAO). Chaque signalement donne lieu à un ordre de travail (OT).
+                Chaque véhicule ayant un OT reste à l'atelier de maintenance jusqu'à ce qu'un mainteneur résolve le problème et clôture l'OT. 
+                Pour ce faire, le mainteneur en charge de l'OT réalisera une ou plusieurs actions de maintenance, appelées ordres de réparation (ODR).</p>
+            <p>L'objectif de ce projet est d'aider les mainteneurs en leur recommandant la ou les actions de maintenance les plus appropriées compte tenu des informations provenant du signalement 
+                conducteur et des caractéristiques du véhicule (kilométrage, type de moteur, marque, etc.).</p>
+            <h3 style="color: #4472C4;">Les données</h3>
+            <p>Deux sources de données sont mises à disposition dans ce projet :</p>
+            <ul>
+                <li>Les données OT-ODR contenant les OT et ODR associés de la flotte de véhicules entre 2011 et 2019.</li>
+                <section class="project-context">
+                    <table style="width: 55%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2; text-align: left;">Colonne</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2; text-align: left;">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">OT_ID</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ID de l'ordre de travail</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ODR_ID</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ID de l'ordre de réparation</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ODR_LIBELLE</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Libellé de l'ordre de réparation (action de maintenance)</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">TYPE_TRAVAIL</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Type d'action réalisée associé à l'ODR</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">DUREE_TRAVAIL</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Durée de l'action de maintenance associé à l'ODR</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">SYSTEM_N1</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Identifiant de système de niveau 1 concerné par l'ODR (niveau macroscopique)</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">SYSTEM_N2</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Identifiant de système de niveau 2 concerné par l'ODR</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">SYSTEM_N3</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Identifiant de système de niveau 3 concerné par l'ODR (niveau le plus précis)</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">EQU_ID</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Identifiant du véhicule concerné par l'OT</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">DATE_OT</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Date de création de l'OT</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">KILOMETRAGE</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Nombre de kilomètres parcourus par le véhicule au moment de la création de l'OT</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">SIG_ORGANE</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Signalement du conducteur sur la partie organe</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">SIG_CONTEXTE</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Signalement du conducteur sur le contexte de l'anomalie</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">SIG_OBS</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Signalement du conducteur sur le symptôme observé</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">LIGNE</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Identifiant de la ligne du véhicule au moment du signalement conducteur</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <li>Les données EQUIPEMENTS contenant les caractéristiques des véhicules.</li>
+                <section class="project-context">
+                    <table style="width: 35%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2; text-align: left;">Colonne</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2; text-align: left;">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">EQU_ID</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Identifiant du véhicule</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">MODELE</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Modèle du véhicule</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">CONSTRUCTEUR</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Constructeur du véhicule</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">MOTEUR</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Type de motorisation du véhicule</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </ul> 
+            <h3 style="color: #4472C4;">Les attentes</h3>
+            <p>
+                Le but de ce projet était <b>le développement d'une IA de diagnostic</b>. Ce travail correspond au développement d'un moteur d'aide au diagnostic et à la recommandation de maintenance. 
+                Il s'agit donc en pratique d'élaborer un modèle permettant de déduire d'un signalement de panne et des caractéristiques d'un véhicule en maintenance, la localisation de la panne 
+                (SYSTEM_N1, SYSTEM_N2, SYSTEM_N3) et l'action de maintenance à réaliser (ODR) permettant de remettre le véhicule en service. Le travail était à réaliser sous Python.
+                L'application pouvait par exemple être développée avec la librairie Plotly Dash ou Streamlit. Nous avions choisi streamlit puisque nous ne connaissions pas et nous souhaitons la découvrir.
+            </p>
+            <p>Les principaux travaux demandés sont les suivants :</p>
+            <ul>
+                <li>Proposer une modélisation pertinente permettant de répondre à la problématique en argumentant nos choix.</li>
+                <li>Utiliser les données à disposition pour réaliser un apprentissage du modèle retenu.</li>
+                <li>Évaluer la performance prédictive de votre modèle à partir d'une approche apprentissage/test classique.</li>
+                <li>(Option) Proposer un second modèle et comparer ses performances avec votre premier modèle.</li>
+            </ul>
+            <p>Mais aussi <b>le développement d'un applicatif métier</b>. L'objectif de ce travail est de développer une application permettant d'interagir avec le moteur de recommandations de la section précédente 
+                de manière transparente pour l'utilisateur final. L'application devait donc proposer une interface permettant de :</p>
+            <ul>
+                <li>saisir les informations nécessaires à la production d'un diagnostic (e.g. signalements, caractéristiques d'un véhicule, etc).</li>
+                <li>réaliser des prédictions de diagnostics.</li>
+                <li>mettre en forme les diagnostics dans l'interface développée.</li>
+                <li>(Option) Proposer un second modèle et comparer ses performances avec votre premier modèle.</li>
+            </ul> 
+        </section>
+        <button class="collapsible">ORGANISATION</button>
+        <section class="project-context collapsible-content">
+            <p>
+                <em>Pour cette SAÉ (Situation d'Apprentissage et d'Évaluation), nous devions choisir une option parmi celle que nous faisons (Marketing et IA pour ma part) et celle qui propose un sujet.
+                Mes deux options proposais un sujet, je me suis dirigé vers l'option IA qui me semblais plus intéressante. Celle-ci s'est déroulé sur une semaine, en IA nous avions 1h30 de cours le lundi,
+                mardi, mercredi et vendredi avec Mr. <a href="https://github.com/roland-donat" target="_blank">Donalt</a>.</em>
+            </p>
+            <p>Nous devions nous mettre par groupe de 3 et nous répartir les tâches comme nous le souhaitions. Mon groupe est composé de Victor Bousseau, Ludovic Picard et moi-même.</p>
+            <p>Voici la répartition de notre travail :</p>
+            <ul>
+                <li>Victor : création des arbres des décisions et des random forest puis de réalisation des slides pour le rendu.</li>
+                <li>Ludovic : création de la structure de l’application réalisée avec streamlit et de préparer l’intégration des modèles.</li>
+                <li>Mes tâches : création des modèles réseaux de neurones (MLP) et classifieur bayésien naïf.</li>
+            </ul>
+        </section>
+        <button class="collapsible">LIVRABLES/RÉSULTATS</button>
+        <section class="project-context collapsible-content">
+            <h3 style="color: #4472C4;">Les livrables demandés</h3>
+            <p>Deux livrables étaient attendus : </p>
+            <ol>
+                <li>Une archive .zip avec un répertoire groupe_X (X = votre numéro de groupe, ici 4) contenant :</li>
+                <ul>
+                    <li>le code de l'application sans les données.</li>
+                    <li>un fichier README.md expliquant la procédure d'installation et de lancement de l'application.</li>
+                </ul>
+                <p>
+                    <em>L'application doit fonctionner sur un système Linux standard (e.g. Ubuntu, Débian, etc.). 
+                    Les données sont supposées être dans un répertoire data au même niveau que le répertoire groupe_X.</em>
+                </p>
+                <li>
+                    Une présentation sous forme de 8 à 10 slides au format pdf (nommée groupe_X.pdf) décrivant votre travail en expliquant l'objectif du projet, les modèles réalisés, 
+                    les performances obtenues et une conclusion.
+                </li>
+            </ol>
+            <h3 style="color: #4472C4;">Nos résultats</h3>
+            <p>
+                Concernant les rendus, nous avons rendu une application non fonctionnelle dû à certaines difficultés rencontrées (détaillé dans la partie <em>APPRENTISSAGES ET DIFFICULTÉS</em>). 
+                Nous avons donc décidé de rendre un fichier nommé Modèles qui résument tous les modèles que nous avons testée. 
+                Afin d'en savoir plus sur ce projet, toute les étapes et le détail sont dans la présentation Power Point téléchargeable, mise à disposition ci-dessous.
+            </p>
+            <p>
+                <a href="../documents/modelisation/Groupe_G4/Projet IA.pptx" download>
+                    <img src="../pictures/powerpoint.png" alt="PowerPoint Logo" style="width: 40px; vertical-align: middle; margin-right: 8px;">Télécharger la présentation POWER POINT
+                </a>
+            </p>
+            <p>
+                <a href="../documents/modelisation/Groupe_G4/Modeles.ipynb" download>
+                    <img src="../pictures/jupyter.png" alt="Jupyter Logo" style="width: 40px; vertical-align: middle; margin-right: 8px;">Télécharger les modèles créées (sous jupyter en .ipynb)
+                </a>
+            </p>
+            <p>
+                <a href="../documents/modelisation/Groupe_G4.zip" download>
+                    <img src="../pictures/zip.png" alt="Zip Archive Logo" style="width: 40px; vertical-align: middle; margin-right: 8px;">Télécharger l'archive rendue
+                </a>
+            </p>                
+        </section>
+        <button class="collapsible">APPRENTISSAGES ET DIFFICULTÉS</button>
+        <section class="project-context collapsible-content">
+            <h3 style="color: #4472C4;">Les difficultés rencontrées</h3>
+            <p>
+                La plupart de nos difficultés que nous avons rencontrée concerne la découverte de streamlit, en effet, streamlit n'est pas facile d'utilisation, cela était donc trop compliqué pour nous de créer une
+                application en seulement une semaine. Notamment sur l'affichage des graphiques que nous ne comprenions pas, l'import de nos modèles dans la strcuture qui fonctionnait une fois sur deux.
+            </p>
+            <p>
+                Ensuite nous avons eu dû mal à réduire les temps d'éxécution de nos modèles, de ce fait, nous perdons beaucoup de temps inutilement.
+            </p>
+            <p>
+                Enfin, nous avons rencontré une difficulté sur la gestion de la variable SIG_CONTEXTE que nous avons du dummiser. En effet, lorsque nous l'ajoutions dans nos modèles, ils étaient moins prédictifs.
+            </p>
+            <h3 style="color: #4472C4;">Les apprentissages</h3>
+            <p>Nous avons apppris à choisir le meilleur modèle grâce aux à certain calcul :</p>
+            <ul>
+                <li>Calcul du meilleur modèle intra algorithme à l'aide de la détermination du nombre de couches pour le MLP et de la détermination de la profondeur des arbres</li>
+                <li>Calculs d’indicateurs de précision à l'aide de l'accuracy, de la matrice de confusion et du F1 score</li>
+            </ul>
+            <h3 style="color: #4472C4;">Les axes envisagés</h3>
+            <p>
+                Durant ce projet, nous avons envisagé plusieurs traitements de données que nous n’avons pas eu le temps d’intégrer tel que la stratification des données dans la création des jeux train et test,
+                de la dummisation de la variable SIG_CONTEXTE et de la sélection du modèle dans l'application.
+            </p>
+            <h3 style="color: #4472C4;">Les axes d'améliorations</h3>
+            <p>
+                Pour améliorer notre application, nous pourrions adapter nos modèles pour pouvoir prendre en compte plus de variables sans que la précision de nos modèles diminue.
+                Mais également améliorer nos visuel dans leurs styles.
+            </p>
+        </section>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>
